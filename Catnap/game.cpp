@@ -1,14 +1,15 @@
 #include "game.h"
 
-Game::Game(SDL_Window*& gameWindow,
-	SDL_Renderer*& renderer) : mGameWindow(gameWindow), mRenderer(renderer) {
+Game::Game(SDL_Window*& game_window,
+	SDL_Surface*& surface,
+	SDL_Renderer*& renderer) : _game_window(game_window), _surface(surface), _renderer(renderer) {
 
 }
 
 Game::~Game() {
 }
 
-void Game::runGame() {
+void Game::run_game() {
 	cout << "running game" << endl;
 
 	bool quit = false;
@@ -26,15 +27,15 @@ void Game::runGame() {
 			}
 		}
 
-		renderGame();
+		render_game();
 	}
 
 }
 
-void Game::renderGame() {
+void Game::render_game() {
 
 }
 
-void Game::destroyResources() {
+void Game::destroy_resources() {
 
 }

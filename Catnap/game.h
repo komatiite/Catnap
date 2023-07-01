@@ -7,15 +7,17 @@ using namespace std;
 
 class Game {
 public:
-	Game(SDL_Window*& gameWindow,
+	Game(SDL_Window*& game_window,
+		SDL_Surface*& surface,
 		SDL_Renderer*& renderer);
 	~Game();
-	void runGame();
+	void run_game();
 
 private:
-	SDL_Window*& mGameWindow;
-	SDL_Renderer*& mRenderer;
+	SDL_Window*& _game_window;
+	SDL_Surface*& _surface;
+	SDL_Renderer*& _renderer;
 	
-	void renderGame();
-	void destroyResources();
+	void render_game();
+	void destroy_resources();
 };

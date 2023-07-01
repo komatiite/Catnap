@@ -5,48 +5,54 @@ const int SCREEN_WIDTH = 1920;
 const int SCREEN_HEIGHT = 1080;
 
 int main(int argc, char* args[]) {
-	SDL_Window* gameWindow;
+	SDL_Window* game_window;
+	SDL_Surface *surface;
 	SDL_Renderer* renderer;
 
-	if (!init(gameWindow, renderer)) {
+	if (!init(game_window, surface, renderer)) {
 		cout << ("ERROR - Could not initalize game.\n") << endl;
 		return 1;
 	}
 
-	Game game(gameWindow, renderer);
-	game.runGame();
+	Game game(game_window, surface, renderer);
+	game.run_game();
 
-	destroyGame(gameWindow, renderer);
+	destroy_game(game_window, surface, renderer);
 
 	return 0;
 }
 
-void destroyGame(SDL_Window*& gameWindow, SDL_Renderer*& renderer) {
+void destroy_game(SDL_Window*& game_window, SDL_Surface*& surface, SDL_Renderer*& renderer) {
 	SDL_DestroyRenderer(renderer);
 	renderer = NULL;
 
-	SDL_DestroyWindow(gameWindow);
-	gameWindow = NULL;
+	SDL_FreeSurface(surface);
+	surface = NULL;
+
+	SDL_DestroyWindow(game_window);
+	game_window = NULL;
 	
 	SDL_Quit();
 }
 
-bool init(SDL_Window*& gameWindow, SDL_Renderer*& renderer) {
-	const string windowTitle = "Catnap";
+bool init(SDL_Window*& game_window, SDL_Surface*& surface, SDL_Renderer*& renderer) {
+	const string window_title = "Catnap";
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("ERROR - SDL could not be initialized. SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
 
-	gameWindow = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	game_window = SDL_CreateWindow(window_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-	if (gameWindow == NULL) {
+	if (game_window == NULL) {
 		printf("ERROR - Window could not be created. SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
 
-	renderer = SDL_CreateRenderer(gameWindow, -1, SDL_RENDERER_ACCELERATED);
+	surface = SDL_GetWindowSurface(game_window);
+
+	renderer = SDL_CreateRenderer(game_window, -1, SDL_RENDERER_ACCELERATED);
 
 	if (renderer == NULL) {
 		printf("Renderer could not be created. SDL_Error: %s\n", SDL_GetError());
