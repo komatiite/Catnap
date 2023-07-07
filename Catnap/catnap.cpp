@@ -32,6 +32,8 @@ void destroy_game(SDL_Window*& game_window, SDL_Surface*& surface, SDL_Renderer*
 	SDL_DestroyWindow(game_window);
 	game_window = NULL;
 	
+	TTF_Quit();
+	//IMG_Quit();
 	SDL_Quit();
 }
 
@@ -56,6 +58,12 @@ bool init(SDL_Window*& game_window, SDL_Surface*& surface, SDL_Renderer*& render
 
 	if (renderer == NULL) {
 		printf("Renderer could not be created. SDL_Error: %s\n", SDL_GetError());
+		return false;
+	}
+
+	if (TTF_Init() == -1)
+	{
+		printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
 		return false;
 	}
 

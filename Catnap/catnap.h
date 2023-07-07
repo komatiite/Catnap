@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include <SDL_ttf.h>
 
 using namespace std;
 

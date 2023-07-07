@@ -159,10 +159,16 @@
   <ItemGroup>
     <ClInclude Include="catnap.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="handle_input.h" />
+    <ClInclude Include="mouse_input.h" />
+    <ClInclude Include="text_display.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="catnap.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="handle_input.cpp" />
+    <ClCompile Include="mouse_input.cpp" />
+    <ClCompile Include="text_display.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

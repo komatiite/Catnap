@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "text_display.h"
 
 using namespace std;
 
@@ -17,7 +18,8 @@ private:
 	SDL_Window*& _game_window;
 	SDL_Surface*& _surface;
 	SDL_Renderer*& _renderer;
+	//Text_Display _text_display;
 	
-	void render_game();
-	void destroy_resources();
+	void render_game(Text_Display& text_display);
+	void destroy_resources(Text_Display& text_display);
 };
